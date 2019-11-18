@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import DatePicker from "react-datepicker";
+import axios from 'axios';
+
 
 //Schedule component allows a schedule to be created 
 export default class Schedule extends Component{
@@ -47,6 +49,10 @@ export default class Schedule extends Component{
       
 
     onSubmit(e){
+        alert(this.state.schedule_title +
+            "   " + this.state.schedule_date +
+            "   " + this.state.schedule_time +
+            "   " + this.state.schedule_description);
         e.preventDefault();
 
         //Output values to the console 
@@ -56,6 +62,20 @@ export default class Schedule extends Component{
         console.log(`Date:${this.state.schedule_date}`);
         console.log(`Time: ${this.state.schedule_time}`);
         console.log(`Description: ${this.state.schedule_description}`);
+
+        const scheduleObject = {
+            title: this.state.schedule_title,
+            date: this.state.schedule_date,
+            time: this.state.schedule_time,
+            description: this.state.schedule_description
+          };
+      
+            axios.post('http://localhost:4000/scheduler', scheduleObject)
+            .then((res) => {
+                console.log(res.data)
+            }).catch((error) => {
+                console.log(error)
+            });
 
         //Resets the form back to orignal once the onSubmit function is called
         this.setState({
