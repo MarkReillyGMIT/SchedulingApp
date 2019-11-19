@@ -6,6 +6,7 @@ import Home from './components/home';
 import Tasks from './components/tasks';
 import Schedule from './components/schedule';
 import logo from './icons8-menu-24.png';
+import Edit from './components/edit'
 function App() {
   return (
     <Router>
@@ -34,6 +35,7 @@ function App() {
       <Route path="/" exact component={Home}/>
       <Route path="/tasks/:id"  component={Tasks}/>
       <Route path="/schedule"  component={Schedule}/>
+      <Route path='/edit/:id' component={Edit} />
     </div>
     </Router>
   );

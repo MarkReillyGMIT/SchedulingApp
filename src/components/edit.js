@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
-import DatePicker from "react-datepicker";
 import axios from 'axios';
 
-
-//Schedule component allows a schedule to be created 
-export default class Schedule extends Component{
+export default class Edit extends Component{
 
     constructor(props){
         super(props);
@@ -46,48 +43,48 @@ export default class Schedule extends Component{
             schedule_description: e.target.value
         });
     }
-      
 
-    onSubmit(e){
-        alert(this.state.schedule_title +
-            "   " + this.state.schedule_date +
-            "   " + this.state.schedule_time +
-            "   " + this.state.schedule_description);
-        e.preventDefault();
-
-        //Output values to the console 
-        //Check if the values are right
-        console.log('Form submitted:');
-        console.log(`Title: ${this.state.schedule_title}`);
-        console.log(`Date:${this.state.schedule_date}`);
-        console.log(`Time: ${this.state.schedule_time}`);
-        console.log(`Description: ${this.state.schedule_description}`);
-
-        const scheduleObject = {
-            title: this.state.schedule_title,
-            date: this.state.schedule_date,
-            time: this.state.schedule_time,
-            description: this.state.schedule_description
-          };
-      
-            axios.post('http://localhost:4000/scheduler', scheduleObject)
-            .then((res) => {
-                console.log(res.data)
-            }).catch((error) => {
-                console.log(error)
-            });
-
-        //Resets the form back to orignal once the onSubmit function is called
-        this.setState({
-            schedule_title: '',
-            schedule_date:'',
-            schedule_time: '',
-            schedule_description:''
+    componentDidMount() {
+        axios.get('http://localhost:4000/scheduler/' +this.props.match.params.id)
+        .then((response)=> {
+            this.setState({
+                _id: response.data._id,
+                title: response.data.title,
+                date: response.data.date,
+                time: response.data.time,
+                description: response.data.description,
+            })
         })
-
+        .catch((error)=>{
+            console.log(error);
+        });
     }
 
-    //Display to screen
+    onSubmit(e) {
+        e.preventDefault();
+        console.log('Button clicked'
+        // ${this.state.schedule_title},
+        // ${this.state.schedule_date},
+        // ${this.state.schedule_description},
+        // ${this.state.schedule_time}
+    );
+    this.setState({
+        schedule_title: '',
+        schedule_date:'',
+        schedule_time: '',
+        schedule_description:''
+    })
+
+    const newSchedule = {
+        title: this.state.schedule_title,
+        date: this.state.schedule_date,
+        time: this.state.schedule_time,
+        description: this.state.schedule_description
+        };
+        axios.put('http://localhost:4000/scheduler/'+this.state._id, newSchedule)
+        .then(res => console.log(res.data));
+        
+    }
     render(){
         return(
             <div style={{margin:20}}>

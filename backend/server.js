@@ -32,7 +32,7 @@ const Schema = mongoose.Schema;
 const SchedulerSchema = new Schema({
     description: String,
     time: String,
-    date: Date,
+    date: String,
     title: String
 });
 
@@ -61,12 +61,14 @@ app.get('/scheduler/:id', (req, res) => {
     })
 })
 //Delete method
-app.delete('/scheduler/:id', (req, res)=>{
+app.delete('/scheduler/:id', function(req, res){
 console.log(req.params.id);
 
 schedulerModel.deleteOne({_id: req.params.id},
-    (error, data) =>{
-        res.json(data);
+    function(err, data) {
+        if(err)
+            res.send(err);
+        res.send(data);
     })
 })
 
