@@ -88,7 +88,7 @@ export default class Edit extends Component{
     render(){
         return(
             <div style={{margin:20}}>
-                <h3>Add New Schedule</h3>
+                <h3>Edit {this.state.title} Schedule</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Title:</label>

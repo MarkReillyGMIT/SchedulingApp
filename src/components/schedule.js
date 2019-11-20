@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import DatePicker from "react-datepicker";
 import axios from 'axios';
+import { isDate } from 'util';
+
 
 
 //Schedule component allows a schedule to be created 
@@ -23,6 +24,11 @@ export default class Schedule extends Component{
         }
     }
 
+    date(){
+        var d = Date();
+        var a = d.toString()  
+    }
+   
     onChangeTitle(e){
         this.setState({
             schedule_title: e.target.value
@@ -46,8 +52,7 @@ export default class Schedule extends Component{
             schedule_description: e.target.value
         });
     }
-      
-
+  
     onSubmit(e){
         alert(this.state.schedule_title +
             "   " + this.state.schedule_date +
@@ -86,12 +91,12 @@ export default class Schedule extends Component{
         })
 
     }
-
     //Display to screen
     render(){
         return(
+            
             <div style={{margin:20}}>
-                <h3>Add New Schedule</h3>
+                <h3 style={{textAlign: "center"}}>Add New Schedule</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Title:</label>
@@ -106,6 +111,7 @@ export default class Schedule extends Component{
                         <label>Date:</label>
                         <br></br>
                         <input type="date"
+                                id="todayDate"
                                 required
                                 className="form-control"
                                 value={this.state.schedule_date}

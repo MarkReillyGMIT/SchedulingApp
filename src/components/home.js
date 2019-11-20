@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {Link } from 'react-router-dom';
 import axios from 'axios';
 import Schedules from './schedules';
-import Button from 'react-bootstrap/Button';
-
 
 export default class Home extends Component{
 
@@ -11,6 +9,8 @@ export default class Home extends Component{
         super(props);
         this.state = {scheduler: []};
     }
+
+    
 
     componentDidMount() {
         axios.get('http://localhost:4000/scheduler')
@@ -25,14 +25,14 @@ export default class Home extends Component{
     render(){
         return(
            <div>
-               <h3>Schedules</h3>
+               <h3 style={{textAlign: "center"}}>Schedules</h3>
                <table className="table table-striped" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Description</th>
+                            <th style={{fontStyle: "italic"}}>Title</th>
+                            <th style={{fontStyle: "italic"}}>Date</th>
+                            <th style={{fontStyle: "italic"}}>Time</th>
+                            <th style={{fontStyle: "italic"}}>Description</th>
                         </tr>
                     </thead>
                     <tbody>
