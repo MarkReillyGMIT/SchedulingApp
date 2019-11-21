@@ -25,10 +25,8 @@ class ScheduleItem extends React.Component{
                 <td>{this.props.schedule.date}</td>
                 <td>{this.props.schedule.time}</td>
                 <td>{this.props.schedule.description}</td>     
-                <td>
-                    <Button variant="danger" onClick={this.DeleteSchedule} class="btn btn-primary">Delete</Button>
-                    <Link to={"/edit/" + this.props.schedule._id +"/" + this.props.schedule.title}class="btn btn-primary">Edit</Link>
-                </td>
+                <td><Button variant="danger" onClick={this.DeleteSchedule} className="btn btn-primary">Delete</Button></td>
+                <td><Link to={"/edit/" + this.props.schedule._id +"/" + this.props.schedule.title}className="btn btn-primary">Edit</Link> </td>
             </tr>
          
             

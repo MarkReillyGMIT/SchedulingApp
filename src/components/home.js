@@ -26,13 +26,16 @@ export default class Home extends Component{
         return(
            <div>
                <h3 style={{textAlign: "center"}}>Schedules</h3>
-               <table className="table table-striped" style={{ marginTop: 20 }} >
+               <table className="table table-striped table-hover" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>
                             <th style={{fontStyle: "italic"}}>Title</th>
                             <th style={{fontStyle: "italic"}}>Date</th>
                             <th style={{fontStyle: "italic"}}>Time</th>
                             <th style={{fontStyle: "italic"}}>Description</th>
+                            <th style={{fontStyle: "italic"}}>Delete</th>
+                            <th style={{fontStyle: "italic"}}>Edit</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -40,6 +43,7 @@ export default class Home extends Component{
                     </tbody>
                 </table>
            </div>
+           
         )
     }
 }

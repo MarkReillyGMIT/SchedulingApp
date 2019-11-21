@@ -5,7 +5,7 @@ const cors =require('cors');
 const PORT = 4000;
 const mongoose = require('mongoose');
 
-
+//Mongodb link to my database
 const mongoDB = 'mongodb+srv://admin:admin@cluster0-7kbun.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.connect(mongoDB, {useNewUrlParser:true});
 app.use(cors());
